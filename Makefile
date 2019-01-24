@@ -7,6 +7,7 @@ DEPLOY_DIR = $(VAR_DIR)/deploy
 pack: cleandeploydir
 	mkdir -p $(VAR_DIR)/deploy
 	cp -R $(CURDIR)/sqs_auto_scale $(DEPLOY_DIR)
+	cp $(CURDIR)/app.config $(DEPLOY_DIR)
 	cp -R $(VIRTUAL_ENV)/lib/python2.7/site-packages/* $(DEPLOY_DIR)
 	cp $(CURDIR)/main.py $(DEPLOY_DIR)/
 	find $(DEPLOY_DIR) -name "*.pyc" -delete;

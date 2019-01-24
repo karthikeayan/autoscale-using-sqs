@@ -1,17 +1,16 @@
 import boto3
 import ConfigParser
 import logging
+import time
 from sqs_auto_scale.queuemodule import QueueDetails
 from sqs_auto_scale.core import Core
 from sqs_auto_scale.autoscale import Scale
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s",
-    handlers=[
-        logging.StreamHandler()
-    ])
 logger = logging.getLogger()
+if logger.handlers:
+    for handler in logger.handlers:
+        logger.removeHandler(handler)
+logging.basicConfig(format="%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s", level=logging.INFO)
 
 configParser = ConfigParser.RawConfigParser()
 configParser.read('app.config')
